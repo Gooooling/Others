@@ -14,19 +14,19 @@
 ## 如果你是CMD（可以整体换掉对应行,记得留意后面的逗号）
 
 ``` json
-"c": "cd /d \"$dir\" && gcc \"$fileName\" -o \"$fileNameWithoutExt\" -std=c17 -Wall -Wpedantic -Wextra && .\\\"$fileNameWithoutExt\"",
+        "c": "cd /d \"$dir\" && gcc \"$fileName\" -o \"$fileNameWithoutExt\" -std=c17 -Wall -Wpedantic -Wextra && .\\\"$fileNameWithoutExt\"",
 ```
 ``` json
-"cpp": "cd /d \"$dir\" && g++ \"$fileName\" -o \"$fileNameWithoutExt\" -std=c++20 -Wall -Wpedantic -Wextra && .\\\"$fileNameWithoutExt\"",
+        "cpp": "cd /d \"$dir\" && g++ \"$fileName\" -o \"$fileNameWithoutExt\" -std=c++20 -Wall -Wpedantic -Wextra && .\\\"$fileNameWithoutExt\"",
 ```
 
 ## 如果你是PowerShell（可以整体换掉对应行,记得留意后面的逗号）
 
 ``` json
-"c": "cd $dir && gcc '$fileName' -o '$fileNameWithoutExt' -std=c17 -Wall -Wpedantic -Wextra && ./'$fileNameWithoutExt'",
+        "c": "cd $dir && gcc '$fileName' -o '$fileNameWithoutExt' -std=c17 -Wall -Wpedantic -Wextra && ./'$fileNameWithoutExt'",
 ```
 ``` json
-"cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt' -std=c++20 -Wall -Wpedantic -Wextra && ./'$fileNameWithoutExt'",
+        "cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt' -std=c++20 -Wall -Wpedantic -Wextra && ./'$fileNameWithoutExt'",
 ```
 
 >注：-std后的标准请按照实际要求设置。
@@ -48,19 +48,19 @@
 ### 如果你是CMD（可以整体换掉对应行,记得留意后面的逗号）
 
 ``` json
-"c": "cd /d \"$dir\" && gcc \"$fileName\" -o \"$fileNameWithoutExt\" -std=c17 -Wall -Wpedantic -Wextra -fexec-charset=GBK && .\\\"$fileNameWithoutExt\"",
+        "c": "cd /d \"$dir\" && gcc \"$fileName\" -o \"$fileNameWithoutExt\" -std=c17 -Wall -Wpedantic -Wextra -fexec-charset=GBK && .\\\"$fileNameWithoutExt\"",
 ```
 ``` json
-"cpp": "cd /d \"$dir\" && g++ \"$fileName\" -o \"$fileNameWithoutExt\" -std=c++20 -Wall -Wpedantic -Wextra -fexec-charset=GBK && .\\\"$fileNameWithoutExt\"",
+        "cpp": "cd /d \"$dir\" && g++ \"$fileName\" -o \"$fileNameWithoutExt\" -std=c++20 -Wall -Wpedantic -Wextra -fexec-charset=GBK && .\\\"$fileNameWithoutExt\"",
 ```
 
 ### 如果你是PowerShell（可以整体换掉对应行,记得留意后面的逗号）
 
 ``` json
-"c": "cd $dir && gcc '$fileName' -o '$fileNameWithoutExt' -std=c17 -Wall -Wpedantic -Wextra -fexec-charset=GBK && ./'$fileNameWithoutExt'",
+        "c": "cd $dir && gcc '$fileName' -o '$fileNameWithoutExt' -std=c17 -Wall -Wpedantic -Wextra -fexec-charset=GBK && ./'$fileNameWithoutExt'",
 ```
 ``` json
-"cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt' -std=c++20 -Wall -Wpedantic -Wextra -fexec-charset=GBK && ./'$fileNameWithoutExt'",
+        "cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt' -std=c++20 -Wall -Wpedantic -Wextra -fexec-charset=GBK && ./'$fileNameWithoutExt'",
 ```
 
 # 中文乱码方法二
