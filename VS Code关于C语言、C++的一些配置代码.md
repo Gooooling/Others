@@ -68,8 +68,7 @@ chcp 65001 > $null ; [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 ;
 ```
 
 ``` json
-"cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt' -std=c++20 -Wall 
--Wextra && ./'$fileNameWithoutExt'",
+"cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt' -std=c++20 -Wall -Wextra && ./'$fileNameWithoutExt'",
 ```
 
 #### 解决中文乱码方法一（直接加编译参数）（此处*仅*为示例，请根据*实际情况*决定**这个-std填啥**与**是否加-Wextra**）：
