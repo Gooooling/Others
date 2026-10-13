@@ -1,85 +1,103 @@
-# C/C++ Compile Run 里的参数
-- *C-cpp-compile-run: C-flags*里面填：
-```
--Wall -Wextra -std=c17 -Wpedantic
-```
-- *C-cpp-compile-run: Cpp-flags*里面填：
-```
--Wall -Wextra -std=c++20 -Wpedantic
-```
->注：-std后的标准请按照实际要求设置。
+# 本文档为VS Code配置C/C++基础环境小教程配套参数、代码集
 
-# Code Runner 里的参数(打开VS Code的设置（Ctrl+,）的json文件，搜索"code-runner.executorMap"，找到对应位置就行)
+## P1基础版相关参数
 
-## 如果你是CMD（可以整体换掉对应行,记得留意后面的逗号）
+### C/C++ Compile Run ：
+
+- C-cpp-compile-run: C-flags里面填（此处仅为示例，请根据实际情况决定-std的具体标准与是否加-Wextra）：
+
+```
+-Wall -Wextra -std=c17 -g
+```
+
+- C-cpp-compile-run: Cpp-flags里面填（此处仅为示例，请根据实际情况决定-std的具体标准与是否加-Wextra）：
+
+```
+-Wall -Wextra -std=c++20 -g
+```
+
+## P2基础加强版&中文乱码相关参数与代码
+
+### C/C++ Compile Run部分
+
+#### 解决中文乱码部分
+
+##### 方法一 (直接加编译参数)：
+- **C-cpp-compile-run: C-flags**里面填（此处*仅*为示例，请根据*实际情况*决定**这个-std填啥**与**是否加-Wextra**）：
+
+```
+-Wall -Wextra -fexec-charset=GBK -std=c17 -g
+```
+
+- **C-cpp-compile-run: Cpp-flags**里面填（此处*仅*为示例，请根据*实际情况*决定**这个-std填啥**与**是否加-Wextra**）：
+
+```
+-Wall -Wextra -fexec-charset=GBK -std=c++20 -g
+```
+
+##### 方法二（把终端变成utf-8）：
+
+> 找到 **C-cpp-compile-run: Custom-run-prefix** 这个设置项
+
+- 如果你是CMD或1复制这个：
+```
+chcp 65001 >nul&
+```
+
+- 如果你是PS（PowerShell）复制这个：
+```
+chcp 65001 > $null ; [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 ;
+```
+
+### Code Runner部分
+
+#### 普通配置版（此处*仅*为示例，请根据*实际情况*决定**这个-std填啥**与**是否加-Wextra**！！！）
+
+- 默认终端为CMD可以参考复制这个：
+``` json
+"c": "cd /d \"$dir\" && gcc \"$fileName\" -o \"$fileNameWithoutExt\" -std=c17 -Wall -Wextra && .\\\"$fileNameWithoutExt\"",
+```
 
 ``` json
-        "c": "cd /d \"$dir\" && gcc \"$fileName\" -o \"$fileNameWithoutExt\" -std=c17 -Wall -Wpedantic -Wextra && .\\\"$fileNameWithoutExt\"",
+"cpp": "cd /d \"$dir\" && g++ \"$fileName\" -o \"$fileNameWithoutExt\" -std=c++20 -Wall -Wextra && .\\\"$fileNameWithoutExt\"",
 ```
+
+- 默认终端为PS可以参考复制这个：
 ``` json
-        "cpp": "cd /d \"$dir\" && g++ \"$fileName\" -o \"$fileNameWithoutExt\" -std=c++20 -Wall -Wpedantic -Wextra && .\\\"$fileNameWithoutExt\"",
+"c": "cd $dir && gcc '$fileName' -o '$fileNameWithoutExt' -std=c17 -Wall -Wextra && ./'$fileNameWithoutExt'",
 ```
-
-## 如果你是PowerShell（可以整体换掉对应行,记得留意后面的逗号）
-
-``` json
-        "c": "cd $dir && gcc '$fileName' -o '$fileNameWithoutExt' -std=c17 -Wall -Wpedantic -Wextra && ./'$fileNameWithoutExt'",
-```
-``` json
-        "cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt' -std=c++20 -Wall -Wpedantic -Wextra && ./'$fileNameWithoutExt'",
-```
-
->注：-std后的标准请按照实际要求设置。
-
-# 中文乱码方法一
-
-## *使用C/C++ Compile Run者：*
-*C-cpp-compile-run: C-flags*里面填：
-```
--Wall -Wextra -std=c17 -Wpedantic -fexec-charset=GBK
-```
-*C-cpp-compile-run: Cpp-flags*里面填：
-```
--Wall -Wextra -std=c++20 -Wpedantic -fexec-charset=GBK
-```
-
-## *使用Code Runner者：*
-
-### 如果你是CMD（可以整体换掉对应行,记得留意后面的逗号）
 
 ``` json
-        "c": "cd /d \"$dir\" && gcc \"$fileName\" -o \"$fileNameWithoutExt\" -std=c17 -Wall -Wpedantic -Wextra -fexec-charset=GBK && .\\\"$fileNameWithoutExt\"",
-```
-``` json
-        "cpp": "cd /d \"$dir\" && g++ \"$fileName\" -o \"$fileNameWithoutExt\" -std=c++20 -Wall -Wpedantic -Wextra -fexec-charset=GBK && .\\\"$fileNameWithoutExt\"",
+"cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt' -std=c++20 -Wall 
+-Wextra && ./'$fileNameWithoutExt'",
 ```
 
-### 如果你是PowerShell（可以整体换掉对应行,记得留意后面的逗号）
+#### 解决中文乱码方法一（直接加编译参数）（此处*仅*为示例，请根据*实际情况*决定**这个-std填啥**与**是否加-Wextra**）：
 
+- 默认终端为CMD可以**参考**复制这个：
 ``` json
-        "c": "cd $dir && gcc '$fileName' -o '$fileNameWithoutExt' -std=c17 -Wall -Wpedantic -Wextra -fexec-charset=GBK && ./'$fileNameWithoutExt'",
-```
-``` json
-        "cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt' -std=c++20 -Wall -Wpedantic -Wextra -fexec-charset=GBK && ./'$fileNameWithoutExt'",
+"c": "cd /d \"$dir\" && gcc \"$fileName\" -o \"$fileNameWithoutExt\" -std=c17 -Wall -Wextra -fexec-charset=GBK && .\\\"$fileNameWithoutExt\"",
 ```
 
-# 中文乱码方法二
+``` json
+"cpp": "cd /d \"$dir\" && g++ \"$fileName\" -o \"$fileNameWithoutExt\" -std=c++20 -Wall -Wextra -fexec-charset=GBK && .\\\"$fileNameWithoutExt\"",
+```
 
-## 打开VS Code 的设置（Ctrl+,），同样打开json版设置文件（那个settings.json），Ctrl+F搜索‘terminal.integrated.profiles.windows’
-
-> 以下也许是能整体替换该部分的,一定注意好格式，路径等是否跟你的电脑上的VS Code相同，否则请手动复制args并遵守格式塞进去就行，注意*逗号*！！！
+- 默认终端为PS可以**参考**复制这个：
+``` json
+"c": "cd $dir && gcc '$fileName' -o '$fileNameWithoutExt' -std=c17 -Wall -Wextra -fexec-charset=GBK && ./'$fileNameWithoutExt'",
+```
 
 ``` json
-        "PowerShell": {
-            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
-            "args": [
-                "-NoExit",
-                "-Command",
-                "chcp 65001 > $null ; [Console]::OutputEncoding = [System.Text.Encoding]::UTF8"
-            ],
-            "icon": "terminal-powershell"
-        },
-        "Command Prompt": {
+"cpp": "cd $dir && g++ '$fileName' -o '$fileNameWithoutExt' -std=c++20 -Wall -Wextra -fexec-charset=GBK && ./'$fileNameWithoutExt'",
+```
+
+#### 解决中文乱码方法二（修改VS Code的配置）：
+> 在设置里搜索terminal.integrated.profiles.windows，点一下**“在settings.json 中编辑”**
+
+- 如果你的默认终端为CMD，大概长这样，args里的一定要一样：
+``` json
+"Command Prompt": {
             "path": "C:\\WINDOWS\\System32\\cmd.exe",
             "args": [
                 "/k",
@@ -88,3 +106,33 @@
             "icon": "terminal-cmd"
         },
 ```
+
+- 如果你的默认终端为PowerShell，请确保：
+> 若默认二字为：PowerShell(默认)，大概长这样，args里的一定要一样：
+
+``` json
+"PowerShell": {
+            "source": "PowerShell",
+            "args": [
+                "-NoExit",
+                "-Command",
+                "chcp 65001 > $null ; [Console]::OutputEncoding = [System.Text.Encoding]::UTF8"
+            ],
+            "icon": "terminal-powershell"
+        },
+```
+
+> 若默认二字为：Windows PowerShell(默认)，大概长这样，args里的一定要一样：
+
+``` json
+"Windows PowerShell": {
+            "path": "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+            "args":[
+                "-NoExit",
+                "-Command",
+                "chcp 65001 > $null ; [Console]::OutputEncoding = [System.Text.Encoding]::UTF8"
+            ]
+        },
+```
+
+## 恭喜你！你已经成功完成本次教程的所有内容！期待你在未来能够开心地有所成就！：）
